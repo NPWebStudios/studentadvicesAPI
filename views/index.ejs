@@ -1,0 +1,27 @@
+<%- include('partials/header') -%>
+
+<main class="main landing-paige-main">
+    <div class="container">
+        <p class="about-api">It's a simple api that generates random advices gathered from students. Built by students, for students. if you are a geek🤓 like me, click on the <a href="/api">api</a> link above to get started</p>
+        <h1 class="section-title">Get some advice dude/dudet✌️</h1>
+        <button id="btn">Generate</button>
+        <h3><i id="advice"></i></h3>
+        <span id="author"></span>
+    </div>
+</main>
+
+<script>
+    const btn = document.getElementById('btn')
+    const adviceContainer = document.getElementById('advice')
+    const authorName = document.getElementById('author')
+
+    btn.addEventListener('click', async () => {
+        const response = await fetch('http://localhost:3000/advice')
+        const data = await response.json()
+
+        adviceContainer.textContent = data.advice
+        author.textContent = `${data.name} - ${data.institution}`
+    })
+</script>
+<%- include('partials/footer') -%>
+
